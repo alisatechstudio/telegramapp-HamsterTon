@@ -222,6 +222,14 @@ export const EARN_TASKS = [
     isWallet: true,
   },
   {
+    id: 'task_watch_ad',
+    title: 'Watch Sponsored Ad (+10,000 Coins)',
+    reward: 10000,
+    icon: 'PlayCircle',
+    actionText: 'Watch Ad',
+    isAd: true,
+  },
+  {
     id: 'task_daily_youtube',
     title: 'Watch CEO Secret Strategy Video',
     reward: 8000,

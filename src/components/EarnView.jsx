@@ -1,6 +1,7 @@
 import { Calendar, Check, Send, Share2, UserPlus, Wallet, PlayCircle } from 'lucide-react';
 import { DAILY_STREAK_REWARDS, EARN_TASKS } from '../data/gameData';
 import { shareTelegramReferral } from '../utils/telegram';
+import { showRewardedAd } from '../utils/ads';
 
 const TASK_ICONS = {
   Send,
@@ -18,7 +19,13 @@ export function EarnView({ state, onClaimStreak, onCompleteTask, onConnectWallet
   const handleTaskAction = (task) => {
     if (state.completedTasks.includes(task.id)) return;
 
-    if (task.isInvite) {
+    if (task.isAd) {
+      showRewardedAd().then((success) => {
+        if (success) {
+          onCompleteTask(task.id);
+        }
+      });
+    } else if (task.isInvite) {
       shareTelegramReferral();
       setTimeout(() => onCompleteTask(task.id), 1200);
     } else if (task.isWallet) {
