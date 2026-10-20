@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useGameState } from './hooks/useGameState';
 import { initTelegramApp, getTelegramUser, isTelegramWebApp } from './utils/telegram';
+import { initInAppAds } from './utils/ads';
 import { Header } from './components/Header';
 import { TapArena } from './components/TapArena';
 import { UpgradesView } from './components/UpgradesView';
@@ -36,9 +37,10 @@ export default function App() {
     toggleSound,
   } = useGameState();
 
-  // Initialize Telegram WebApp on startup
+  // Initialize Telegram WebApp and In-App Interstitial Ads on startup
   useEffect(() => {
     initTelegramApp();
+    initInAppAds();
     const tgUser = getTelegramUser();
     setUser(tgUser);
 

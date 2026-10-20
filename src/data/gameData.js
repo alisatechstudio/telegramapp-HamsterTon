@@ -223,11 +223,19 @@ export const EARN_TASKS = [
   },
   {
     id: 'task_watch_ad',
-    title: 'Watch Sponsored Ad (+10,000 Coins)',
+    title: 'Watch Rewarded Ad (+10,000 Coins)',
     reward: 10000,
     icon: 'PlayCircle',
-    actionText: 'Watch Ad',
+    actionText: 'Watch Video Ad',
     isAd: true,
+  },
+  {
+    id: 'task_bonus_popup',
+    title: 'Instant Ad Bonus Pop (+5,000 Coins)',
+    reward: 5000,
+    icon: 'Sparkles',
+    actionText: 'Open Ad Pop',
+    isAdPopup: true,
   },
   {
     id: 'task_daily_youtube',

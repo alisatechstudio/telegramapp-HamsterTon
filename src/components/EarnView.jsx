@@ -1,7 +1,7 @@
-import { Calendar, Check, Send, Share2, UserPlus, Wallet, PlayCircle } from 'lucide-react';
+import { Calendar, Check, Send, Share2, UserPlus, Wallet, PlayCircle, Sparkles } from 'lucide-react';
 import { DAILY_STREAK_REWARDS, EARN_TASKS } from '../data/gameData';
 import { shareTelegramReferral } from '../utils/telegram';
-import { showRewardedAd } from '../utils/ads';
+import { showRewardedInterstitial, showRewardedPopup } from '../utils/ads';
 
 const TASK_ICONS = {
   Send,
@@ -10,6 +10,7 @@ const TASK_ICONS = {
   UserPlus,
   Wallet,
   PlayCircle,
+  Sparkles,
 };
 
 export function EarnView({ state, onClaimStreak, onCompleteTask, onConnectWallet }) {
@@ -20,7 +21,15 @@ export function EarnView({ state, onClaimStreak, onCompleteTask, onConnectWallet
     if (state.completedTasks.includes(task.id)) return;
 
     if (task.isAd) {
-      showRewardedAd().then((success) => {
+      // Rewarded Interstitial
+      showRewardedInterstitial().then((success) => {
+        if (success) {
+          onCompleteTask(task.id);
+        }
+      });
+    } else if (task.isAdPopup) {
+      // Rewarded Popup ('pop')
+      showRewardedPopup().then((success) => {
         if (success) {
           onCompleteTask(task.id);
         }
